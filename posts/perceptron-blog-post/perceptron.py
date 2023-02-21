@@ -40,7 +40,7 @@ class Perceptron:
         for i in range(max_steps):
             
             score2 = self.score(X_mod,y)
-            print(score2)
+            print("The accuracy of iteration %d" %i + " is " + str(score2) + ".")
             self.history.append(score2)
             
             #perform perceptron update and log score in self.history
