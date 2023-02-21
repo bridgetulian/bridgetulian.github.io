@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Bridget Ulian">
+<meta name="dcterms.date" content="2023-02-21">
+<meta name="description" content="A blog explaining the implementation of the perceptron algorithm.">
 
-<title>Bridget Ulian's CSCI 0451 Blog – perceptron_blog</title>
+<title>Bridget Ulian’s CSCI 0451 Blog - Perceptron Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -169,12 +172,45 @@ background-size: cover;
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Perceptron Blog</h1>
+                  <div>
+        <div class="description">
+          A blog explaining the implementation of the perceptron algorithm.
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Bridget Ulian </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 21, 2023</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
+
 
 
 
@@ -188,7 +224,7 @@ background-size: cover;
 <section id="experiment-linearly-separable" class="level2">
 <h2 class="anchored" data-anchor-id="experiment-linearly-separable">Experiment: Linearly Separable</h2>
 <p>The first experiment I ran had to do with linearly separable data, to ensure that the line converges. I created a perceptron object and ran my perceptron.fit function on that object, and the line did end up converging. I printed out my accuracies, and they fluctuated (albeit barely). The accuracy did end up reaching 1.0, proving line convergence. This code (and output) can be observed below.</p>
-<div class="cell" data-execution_count="15">
+<div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext autoreload</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> perceptron <span class="im">import</span> Perceptron</span>
@@ -240,7 +276,7 @@ Accuracy History as an Array
 <section id="experiment-not-linearly-separable" class="level2">
 <h2 class="anchored" data-anchor-id="experiment-not-linearly-separable">Experiment: Not Linearly Separable</h2>
 <p>The second experiment I did had to do with data that was not linearly separable, to see if the line didn’t converge. Indeed, when the data was not linearly separable (as seen below), the line did not converge and the accuracy never reached 1.0. I utilized the make_circles function from sklearn.datasets to create my non linearly separable data, and the accuracy ended up (after max_steps equal to 1000) at 0.53.</p>
-<div class="cell" data-execution_count="16">
+<div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext autoreload</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> perceptron <span class="im">import</span> Perceptron</span>
