@@ -294,6 +294,7 @@ Accuracy History as an Array
 <section id="runtime-complexity-of-a-perceptron-update" class="level2">
 <h2 class="anchored" data-anchor-id="runtime-complexity-of-a-perceptron-update">Runtime Complexity of a Perceptron Update</h2>
 <p>The runtime complexity of a single iteration of the perceptron algorithm update is dependent on the number of data points n, but not on the number of features p (this is specific to my implementation of the algorithm, where I am looking at accuracy / adding the score to a property history for th perceptron). The runtime is going to be O(max_steps * n) where n is the number of data points. the for loop iterates through the specified number of max_steps, but everything within that for loop (other than the calculation of the score) is O(1). The calculation of the score is O(n), because the score predicts a label for each of the data points. Therefore, within the for loop, the runtime is O(n), making the total runtime O(max_steps * n).</p>
+<p><strong>note for Phil</strong> I think something is up with my accuracies, but not sure what… maybe the way I’m assigning my original weight?</p>
 
 
 </section>
