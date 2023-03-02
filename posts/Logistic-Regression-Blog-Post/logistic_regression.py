@@ -55,7 +55,7 @@ class LogisticRegression:
 
         
     def fit(self, X, y, alpha=0.001, max_epochs=1000):
-        #no return value, will give instance variable of weights called w, and loss history, and score history
+        #no return value, will update instance variable of weights called w, and loss history, and score history
         
         #append ones to the feature matrix
         X = np.append(X, np.ones((X.shape[0],1)),1)
@@ -83,7 +83,7 @@ class LogisticRegression:
                 
                
     def fit_stochastic(self, X, y, alpha=0.001, m_epochs=1000, batch_size=10):
-        #give instance variables of weights called w and loss history and score history for stochastic gradient descent
+        #returns nothing, but updates instance variables of weights called w and loss history and score history for stochastic gradient descent
        
         #append ones to the feature matrix
         X = np.append(X, np.ones((X.shape[0],1)),1)
