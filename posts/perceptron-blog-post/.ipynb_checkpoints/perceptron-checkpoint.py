@@ -34,6 +34,7 @@ class Perceptron:
         
         #assign random weight to begin
         p = X_mod.shape[1]
+        self.w = np.random.rand(p)
         
         #for loop over the maximum steps
         for i in range(max_steps):
