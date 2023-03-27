@@ -86,22 +86,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -124,13 +124,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <style>
     .quarto-title-block .quarto-title-banner {
       color: white;
-background-image: url(img/landscape.png);
+background-image: url(../img/landscape.png);
 background-size: cover;
     }
     </style>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -140,7 +140,7 @@ background-size: cover;
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Bridget Ulian’s CSCI 0451 Blog</span>
     </a>
   </div>
@@ -150,7 +150,7 @@ background-size: cover;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">Bridget Ulian CS0145 Blog</a>
+    <a class="nav-link" href="../about.html">Bridget Ulian CS0145 Blog</a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
@@ -188,11 +188,11 @@ background-size: cover;
 <section id="displayed-table-sex-v.-body-mass-g" class="level2">
 <h2 class="anchored" data-anchor-id="displayed-table-sex-v.-body-mass-g">Displayed Table: Sex v. Body Mass (g)</h2>
 <p>From this aggregation (seen below), it is clear the body mass of male penguins is significantly larger than the mass of female penguins. I hypothesized as much, but was curious how mean body mass’ compared between female and male penguins. On average, male penguins are approximately 800 grams larger than female penguins. This is interesting, not for prediction of species (unless number of females and males is an indicator for species, which is something to explore later), but for prediction of gender.</p>
-<div class="cell" data-execution_count="11">
+<div class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#one interesting displayed table w/ pandas.groupby().aggregate, discussion of figure/table</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>X_train.groupby(<span class="st">'Sex_FEMALE'</span>)[<span class="st">'Body Mass (g)'</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="52">
 <pre><code>Sex_FEMALE
 0    4613.076923
 1    3823.214286
@@ -203,7 +203,7 @@ Name: Body Mass (g), dtype: float64</code></pre>
 <section id="displayed-figure-relationship-between-culmen-length-and-body-mass-per-island" class="level2">
 <h2 class="anchored" data-anchor-id="displayed-figure-relationship-between-culmen-length-and-body-mass-per-island">Displayed Figure: Relationship between Culmen Length and Body Mass per Island</h2>
 <p>The figures below describe the relationship between Culmen Length (mm) and Body Mass (g) in the penguins found in each island. On the left, the relationship for penguins on Dream Island and Togerson Island is shown (orange being Dream Island, blue being Torgerson Island). On the right, the relationship for penguins on Biscoe Island is shown. It is clear that on Biscoe Island there is a pretty linear relationship between increasing Culmen Length and increasing Body Mass. This is curious, as it points to perhaps a more homogenous penguin species population on Biscoe Island – the relationship is consistent for the majority of penguins on the island. Looking at Dream and Torgerson Island on the left, there is almost no relationship between Culmen Length and Body Mass. This could mean a few things; there is a wide variety of penguin species on the two islands, affecting the linearity of the relationship between the two features, or the species of penguin typically found on the two islands does not increase in Body Mass with an increase in Culmen Length.</p>
-<div class="cell" data-execution_count="12">
+<div class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one interesting displayed figure with seaborn + discussion</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -214,8 +214,8 @@ Name: Body Mass (g), dtype: float64</code></pre>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>X_train, </span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="st">"Culmen Length (mm)"</span>,y<span class="op">=</span><span class="st">"Body Mass (g)"</span>, col <span class="op">=</span> <span class="st">"Island_Biscoe"</span>,</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>hue<span class="op">=</span><span class="st">"Island_Dream"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x7f9c71ed0f10&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="53">
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x7ff02872e850&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="Palmer_Penguins_Blog_files/figure-html/cell-3-output-2.png" class="img-fluid"></p>
@@ -225,7 +225,7 @@ Name: Body Mass (g), dtype: float64</code></pre>
 <section id="model-determining-features-and-model" class="level2">
 <h2 class="anchored" data-anchor-id="model-determining-features-and-model">Model: Determining Features and Model</h2>
 <p>Next, I determined the model and features to use in order to reach 100% accuracy on the testing data. With a reproducible method, I found Logistic Regression and Island, Culmen Length, and Culmen Depth to achieve 100% testing accuracy.</p>
-<div class="cell" data-execution_count="13">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
@@ -262,7 +262,7 @@ Name: Body Mass (g), dtype: float64</code></pre>
 <span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co">#X_train</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="14">
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#selecting the columns that we want</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>all_qual_cols <span class="op">=</span> [<span class="st">"Clutch Completion"</span>, <span class="st">"Sex"</span>, <span class="st">"Island"</span>, <span class="st">"Stage"</span>]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>all_quant_cols <span class="op">=</span> [<span class="st">'Culmen Length (mm)'</span>, <span class="st">'Culmen Depth (mm)'</span>, <span class="st">'Flipper Length (mm)'</span>, <span class="st">'Delta 15N'</span>, <span class="st">'Delta 13C'</span>]</span>
@@ -359,7 +359,7 @@ Please also refer to the documentation for alternative solver options:
 <section id="testing-model-and-features-for-100-accuracy" class="level2">
 <h2 class="anchored" data-anchor-id="testing-model-and-features-for-100-accuracy">Testing Model and Features for 100% Accuracy</h2>
 <p>Again, via the reproducible model above, I found the Logistic Regression Model and features Island, Culmen Length (mm), and Culmen Depth (mm) should find an accuracy of 100% with the testing data. This is confirmed below, where the model achieves an accuracy of 100% with the test data.</p>
-<div class="cell" data-execution_count="15">
+<div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>LR <span class="op">=</span> LogisticRegression()</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>LR.fit(X_train[cols_to_use], y_train)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>LR.score(X_train[cols_to_use], y_train)</span>
@@ -382,11 +382,11 @@ Please also refer to the documentation for alternative solver options:
     https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
   n_iter_i = _check_optimize_result(</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>1.0</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="16">
+<div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -394,7 +394,7 @@ Please also refer to the documentation for alternative solver options:
 <section id="evaluate-decision-regions-of-final-model" class="level2">
 <h2 class="anchored" data-anchor-id="evaluate-decision-regions-of-final-model">Evaluate: Decision Regions of Final Model</h2>
 <p>As seen below, utilizing the Logistic Regression Model alongside the features Island, Culmen Length (mm), and Culmen Depth (mm) yields an accuracy of 1.0 and perfectly splits the decision regions.</p>
-<div class="cell" data-execution_count="17">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Patch</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_regions(model, X, y):</span>
