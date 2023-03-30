@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Bridget Ulian">
+<meta name="dcterms.date" content="2023-03-30">
+<meta name="description" content="An essay assessing Narayanan’s statement that current quantitative methods justify the status quo, and that they do more harm than good.">
+
+<title>Bridget Ulian’s CSCI 0451 Blog - Limits of the Quantitative Approach to Bias and Fairness</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>
+    .quarto-title-block .quarto-title-banner {
+      color: white;
+background-image: url(../../img/landscape.png);
+background-size: cover;
+    }
+    </style>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Bridget Ulian’s CSCI 0451 Blog</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">Bridget Ulian CS0145 Blog</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Limits of the Quantitative Approach to Bias and Fairness</h1>
+                  <div>
+        <div class="description">
+          An essay assessing Narayanan’s statement that current quantitative methods justify the status quo, and that they do more harm than good.
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Bridget Ulian </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 30, 2023</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="the-addition-of-qualitative-research-to-quantitative-research-helping-empirically-determine-inequity" class="level1">
+<h1>The Addition of Qualitative Research to Quantitative Research: Helping Empirically Determine Inequity</h1>
+<p style="text-align: center;">
+“Currently quantitative methods are primarily used to justify the status quo. I would argue that they do more harm than good” - Narayanan
+</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p> In his 2022 James Baldwin Speech Arvind Narayanan argues that quantitative research requires significant reform including reshaping the assumed status quo, use alongside and with the same legitimacy as qualitative methods, and deeper consideration beyond their ‘objective’ facade. He goes through each of his criticisms with the precision of a quantitative researcher, seeing as he is one. Narayanan is correct in his statement that quantitative methods are primarily used right now to justify the status quo, but he does not offer enough grace to the current use quantitative methods have alongside qualitative methods, especially in verifying the experiences and legitimacy of qualitative methods to policymakers, health professionals, and other people in positions of power. While it may be problematic that quantitative methods are needed to verify lived experiences, it is important to note that qualitative methods alone also cannot justify significant decisions, especially regarding taxpayers’ money. The importance of quantitative methods comes from their use alongside qualitative methods, giving decision makers multiple methods of reaching a conclusion; quantitative methods offer one pathway and qualitative methods another, and together they build a logical, not objective, decision path.</p>
+</section>
+<section id="narayanans-argument" class="level2">
+<h2 class="anchored" data-anchor-id="narayanans-argument">Narayanan’s Argument</h2>
+<p> Narayanan’s argument calls for a complete change in how academics, decision-makers, and everyday people approach quantitative research. One reform requires a shift in how researchers observe the status quo; as Narayanan argues, “baked into the practice of quantitative methods is a worldview that sees the status quo as unproblematic” <span class="citation" data-cites="limitsnarayanan">(<a href="#ref-limitsnarayanan" role="doc-biblioref">Narayanan 2022, 3</a>)</span>. This status quo is an issue because it leads to a null hypothesis that discrimination does not exist <span class="citation" data-cites="limitsnarayanan">(<a href="#ref-limitsnarayanan" role="doc-biblioref">Narayanan 2022, 7</a>)</span>. When the null hypothesis is discrimination does not exist, the burden is on the research to prove that discrimination does exist. If a different null hypothesis (or status quo) was utilized, the burden on the research would be to prove that discrimination doesn’t exist. Another example of how the status quo affects quantitative research has to do with how data is collected: from a single time frame. Single time frames do not capture the history of oppression and day-to-day inequalities that compound greater inequalities <span class="citation" data-cites="limitsnarayanan">(<a href="#ref-limitsnarayanan" role="doc-biblioref">Narayanan 2022, 10</a>)</span>. With a shift in the status quo to understand that discrimination is the standard rather than non-discrimination as well as an understanding that inequalities compound over time, quantitative methods can become more accurate and helpful.</p>
+<p> Another reform Narayanan suggests is that quantitative methods are held to the same level of legitimacy as quantitative methods. He argues that quantitative methods are not “an alternative to democratic debate about our values” and that currently “policy makers take quantitative methods far more seriously than other forms of evidence” <span class="citation" data-cites="limitsnarayanan">(<a href="#ref-limitsnarayanan" role="doc-biblioref">Narayanan 2022, 17</a>)</span>. There are a few different arguments here; one is that quantitative methods and qualitative methods need to be used hand-in-hand when making decisions regarding discrimination. Another is that policymakers need to be more open-minded to qualitative methods as a legitimate form of evidence. Both of them necessitate researchers and the public to understand the value of qualitative methods and accept qualitative research as equally valid in comparison to quantitative methods. This reform feeds directly into his last suggestion, that consumers, researchers, and decision-makers understand the subjective decisions that go into quantitative research. A significant aspect of this is dataset curation, understanding that datasets often determine the research question or that datasets can be provided by the company being investigated in the research <span class="citation" data-cites="limitsnarayanan">(<a href="#ref-limitsnarayanan" role="doc-biblioref">Narayanan 2022, 11</a>)</span>. By spending time “curating and interrogating datasets,” researchers can provide a more thorough understanding of their conclusions <span class="citation" data-cites="limitsnarayanan">(<a href="#ref-limitsnarayanan" role="doc-biblioref">Narayanan 2022, 21</a>)</span>. Essentially, in order to make quantitative methods do more good than harm, researchers, the public, and decision-makers will have to change the way they think about the status quo, objectivity in quantitative research, and qualitative methods.</p>
+</section>
+<section id="benefits-and-uses-to-quantitative-methodologies-case-studies" class="level2">
+<h2 class="anchored" data-anchor-id="benefits-and-uses-to-quantitative-methodologies-case-studies">Benefits and Uses to Quantitative Methodologies: Case Studies</h2>
+<p> Narayanan does not have a lot of good to say about quantitative research. However, many quantitative and qualitative researchers have extolled quantitative research for providing a validating role to qualitative research, for increasing in strength when working from a different status quo or introducing the certainty of subconscious biases, and for its power in influencing policymakers and other decision-makers. Quantitative researchers, as well as qualitative researchers, have proved multiple times that they are attempting to achieve well-rounded conclusions that exemplify the holistic and complex structures of discrimination. As far back as 1984, quantitative researchers have been trying to make their methods more holistic, as seen in a study by Ragin, Mayer, and Draas. In 1984, studies of discrimination and structural racism were not as far along as they are today, but the three researchers were still trying to find a comparative and holistic way to assume the complexity of discrimination in quantitative methods <span class="citation" data-cites="10.2307/2095572">(<a href="#ref-10.2307/2095572" role="doc-biblioref">Ragin, Mayer, and Drass 1984, 228</a>)</span>. Another study on transgender healthcare melds qualitative and quantitative research together to demonstrate significant disparities in levels of depression between cis- and transgender women, then utilizes qualitative research to suggest measures nurses can take to support transgender women <span class="citation" data-cites="https://doi.org/10.1111/jocn.13913">(<a href="#ref-https://doi.org/10.1111/jocn.13913" role="doc-biblioref">McCann and Brown 2017, 4083</a>)</span>.</p>
+<p> When quantitative researchers shift the status quo and admit to subconscious biases affecting their research, they increase the potency of quantitative methods by ensuring the audience scrutinizes the conclusion beyond objectivity. For example, seeking out new data sources to try and find understudied aspects of structural racism is a way to challenge the status quo <span class="citation" data-cites="doi:10.1377/hlthaff.2021.01489">(<a href="#ref-doi:10.1377/hlthaff.2021.01489" role="doc-biblioref">Hardeman et al. 2022, 183</a>)</span>. These five researchers made their own data sets after observing how much structural racism quantitative research utilizes census population estimates which do not contain any context <span class="citation" data-cites="doi:10.1377/hlthaff.2021.01489">(<a href="#ref-doi:10.1377/hlthaff.2021.01489" role="doc-biblioref">Hardeman et al. 2022, 183</a>)</span>. They wanted to reflect the multidimensionality that comes with many forms of structural racism sharing the same pathway and interacting with each other. When quantitative researchers look to change the status quo and create research that reflects the external context and multidimensionality of discrimination, they can create very powerful results. When researchers admit to subconscious biases like Katsiaficas, Volpe, Benson, and Zelaya Rivera when they say “the authors come from White, Arab American, Latinx, and first-generation African American backgrounds and brought a variety of lived experiences to this work,” they inject the research with the same amount of subjectivity that qualitative research contains <span class="citation" data-cites="mixedmethodsinvestigation">(<a href="#ref-mixedmethodsinvestigation" role="doc-biblioref">Volpe et al., n.d., 690</a>)</span>. They force the audience to reconsider their opinion that quantitative research is objective.</p>
+<p> Finally, quantitative methods help inform policymakers and decision-makers when making critical decisions. Qualitative methods are one way to look at structural racism, but quantitative methods are also “crucially important to our understanding of the ways in which structured racism is perceived and experienced” <span class="citation" data-cites="measuringinequity">(<a href="#ref-measuringinequity" role="doc-biblioref">Groos et al., n.d., 201</a>)</span>. There have been calls for researchers to identify structural racism as a root cause of racial health inequity, meaning the “development of sound measures of structural racism is an urgent public health issue” <span class="citation" data-cites="doi:10.1377/hlthaff.2021.01489">(<a href="#ref-doi:10.1377/hlthaff.2021.01489" role="doc-biblioref">Hardeman et al. 2022, 180</a>)</span>. This is not to say that quantitative methods alone are necessary for aiding policymakers, but it is to say that policymakers and others in power must use quantitative methods alongside qualitative methods to justify their decisions. These quantitative methods need to connect historical and contemporary forms of structural racism, they need to be used in conjunction with qualitative methods, but they are necessary for justifying significant decisions <span class="citation" data-cites="doi:10.1377/hlthaff.2021.01489">(<a href="#ref-doi:10.1377/hlthaff.2021.01489" role="doc-biblioref">Hardeman et al. 2022, 181</a>)</span>.</p>
+</section>
+<section id="my-perspective" class="level2">
+<h2 class="anchored" data-anchor-id="my-perspective">My Perspective</h2>
+<p> This last argument on the importance of quantitative methods in helping persons in power make decisions leads directly to my argument; Narayanan is generally correct in stating that quantitative methods reinforce the status quo and do more harm than good. However, there are many examples of how to utilize quantitative methods in a way that doesn’t reinforce the status quo, and these examples are necessary as decision-makers must lean on quantitative research (alongside qualitative) when making decisions that have a significant impact on people’s lives. Relying solely on qualitative methods would not lead decision-makers to a ‘best’ conclusion any more than relying solely on quantitative methods would. However, utilizing the two in conjunction with each other gives decision-makers both vivid accounts of lived experiences and patterns in data as well as numeric measurements of those lived experiences. This does not promote quantitative methods over qualitative methods, nor does it assume quantitative methods are any more objective or true than qualitative methods. It creates room for democratic debate using multiple types of information. With this democratic debate, drawn from multiple types of data collection and assessment, decision-makers have the authority to determine a conclusion, one which may change as different quantitative and qualitative research continues to become available.</p>
+<p> From Narayanan’s argument, it is clear quantitative researchers have a long way to go. However, from the five scholarly arguments cited throughout this paper, there are a lot of examples of how quantitative research can do more good than harm. Quantitative research can be very effective in use alongside qualitative research, particularly when researchers confront head-on the subjective decisions, harmful status quo, and subconscious biases they bring into their research. This is something that, as Narayanan himself explains, is very feasible; the psychology field has begun to “explicitly acknowledge that scientists have their biases, their pet theories, their favored and hoped-for conclusions” <span class="citation" data-cites="limitsnarayanan">(<a href="#ref-limitsnarayanan" role="doc-biblioref">Narayanan 2022, 8</a>)</span>. With something as simple as that, the psychology field has changed how their audience reads research; they have ensured audiences understand the non-objectivity of their research. This demonstrates hope for quantitative research going forward, especially in the realm of discrimination and inequity.</p>
+
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-measuringinequity" class="csl-entry" role="doc-biblioentry">
+Groos, Maya, Maeve Wallace, Rachel Hardeman, and Katherine P. Theall. n.d. <span>“Measuring Inequity: A Systematic Review of Methods Used to Quantify Structural Racism.”</span> <em>Journal of Health Disparities Research and Practice</em> 11 (2).<a href="
+    https://digitalscholarship.unlv.edu/jhdrp/vol11/iss2/13/
+    "> https://digitalscholarship.unlv.edu/jhdrp/vol11/iss2/13/ </a>.
+</div>
+<div id="ref-doi:10.1377/hlthaff.2021.01489" class="csl-entry" role="doc-biblioentry">
+Hardeman, Rachel R., Patricia A. Homan, Tongtan Chantarat, Brigette A. Davis, and Tyson H. Brown. 2022. <span>“Improving the Measurement of Structural Racism to Achieve Antiracist Health Policy.”</span> <em>Health Affairs</em> 41 (2): 179–86. <a href="https://doi.org/10.1377/hlthaff.2021.01489">https://doi.org/10.1377/hlthaff.2021.01489</a>.
+</div>
+<div id="ref-https://doi.org/10.1111/jocn.13913" class="csl-entry" role="doc-biblioentry">
+McCann, Edward, and Michael Brown. 2017. <span>“Discrimination and Resilience and the Needs of People Who Identify as Transgender: A Narrative Review of Quantitative Research Studies.”</span> <em>Journal of Clinical Nursing</em> 26 (23-24): 4080–93. https://doi.org/<a href="https://doi.org/10.1111/jocn.13913">https://doi.org/10.1111/jocn.13913</a>.
+</div>
+<div id="ref-limitsnarayanan" class="csl-entry" role="doc-biblioentry">
+Narayanan, Arvind. 2022. <span>“The Limits of the Quantitative Approach to Discriminatino.”</span> <a href="https://www.cs.princeton.edu/~arvindn/talks/baldwin-discrimination/baldwin-discrimination-transcript.pdf">https://www.cs.princeton.edu/~arvindn/talks/baldwin-discrimination/baldwin-discrimination-transcript.pdf</a>.
+</div>
+<div id="ref-10.2307/2095572" class="csl-entry" role="doc-biblioentry">
+Ragin, Charles C., Susan E. Mayer, and Kriss A. Drass. 1984. <span>“Assessing Discrimination: A Boolean Approach.”</span> <em>American Sociological Review</em> 49 (2): 221–34. <a href="http://www.jstor.org/stable/2095572">http://www.jstor.org/stable/2095572</a>.
+</div>
+<div id="ref-mixedmethodsinvestigation" class="csl-entry" role="doc-biblioentry">
+Volpe, Vanessa V., Dalal Katsiaficas, Perusi G. Benson, and Susana N. Zelaya Rivera. n.d. <span>“A Mixed Methods Investigation of Black College-Attending Emerging Adults’ Experiences with Multilevel Racism.”</span> <em>American Journal of Orthopsychiatry</em>, 687–702.<a href="
+    https://psycnet.apa.org/record/2020-44810-001
+    "> https://psycnet.apa.org/record/2020-44810-001 </a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
