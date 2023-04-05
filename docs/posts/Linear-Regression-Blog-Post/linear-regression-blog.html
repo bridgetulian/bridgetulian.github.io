@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Bridget Ulian">
+<meta name="dcterms.date" content="2023-04-05">
+<meta name="description" content="Implementing linear regression.">
 
-<title>Bridget Ulian's CSCI 0451 Blog – linear-regression-blog</title>
+<title>Bridget Ulian’s CSCI 0451 Blog - Implementing Linear Regression</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -173,7 +176,39 @@ background-size: cover;
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Implementing Linear Regression</h1>
+                  <div>
+        <div class="description">
+          Implementing linear regression.
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Bridget Ulian </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 5, 2023</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
@@ -182,14 +217,15 @@ background-size: cover;
 
 
 
+
 <section id="implementing-linear-regression" class="level1">
 <h1>Implementing Linear Regression</h1>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Linear regression is a model that helps find the linear equation that best explains the correlation between variables and an outcome. In this blog post, I implement linear regression in two ways.</p>
-<p>The first is analytical, in which I use the formula: <span class="math display">\[\hat w = argmin_{w}L(w) = argmin_{w}\lVert Xw - y \rVert^2\]</span> This formula updates the weight according to the loss function: <span class="math display">\[l(\hat y, y) = (\hat y - y)^2\]</span> With this minimization equation, one can then take the gradient with respect to <span class="math inline">\(w\hat\)</span>, and solve for <span class="math inline">\(\hat w\)</span> as <span class="math display">\[\hat w = (X^TX)^{-1}X^Ty\]</span></p>
+<p>The first is analytical, in which I use the formula: <span class="math display">\[\hat w = argmin_{w}L(w) = argmin_{w}\lVert Xw - y \rVert^2\]</span> This formula updates the weight according to the loss function: <span class="math display">\[l(\hat y, y) = (\hat y - y)^2\]</span> With this minimization equation, one can then take the gradient with respect to <span class="math inline">\(\hat w\)</span>, and solve for <span class="math inline">\(\hat w\)</span> as <span class="math display">\[\hat w = (X^TX)^{-1}X^Ty\]</span></p>
 <p>The second was with gradient descent, the formula for the gfradient being <span class="math display">\[\nabla L = 2X^T(Xw - y)\]</span> Each weight update, the gradient multiplied by an alpha value (default alpha = 0.001) was subtracted from the weight to obtain the new weight.</p>
-<p>These two implementations of linear regression are seen below and my source code can be found at <a href="https://github.com/bridgetulian/bridgetulian.github.io/tree/main/posts">source code</a>.</p>
+<p>These two implementations of linear regression are seen below and my source code can be found at <a href="https://github.com/bridgetulian/bridgetulian.github.io/blob/main/posts/Linear-Regression-Blog-Post/linear_regression.py">source code</a>.</p>
 </section>
 <section id="data-set-up" class="level2">
 <h2 class="anchored" data-anchor-id="data-set-up">Data Set Up</h2>
