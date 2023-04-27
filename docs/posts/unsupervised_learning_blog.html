@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Bridget Ulian">
-<meta name="dcterms.date" content="2023-04-24">
-<meta name="description" content="Unsupervised Learning with Singular Value Decomposition">
+<meta name="dcterms.date" content="2023-04-26">
+<meta name="description" content="Unsupervised Learning with Singular Value Decomposition and Laplacian Spectral Clustering">
 
 <title>Bridget Ulian’s CSCI 0451 Blog - Unsupervised Learning Blog</title>
 <style>
@@ -179,7 +179,7 @@ background-size: cover;
       <h1 class="title">Unsupervised Learning Blog</h1>
                   <div>
         <div class="description">
-          Unsupervised Learning with Singular Value Decomposition
+          Unsupervised Learning with Singular Value Decomposition and Laplacian Spectral Clustering
         </div>
       </div>
                 </div>
@@ -198,7 +198,7 @@ background-size: cover;
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 24, 2023</p>
+        <p class="date">April 26, 2023</p>
       </div>
     </div>
       
@@ -215,8 +215,11 @@ background-size: cover;
 
 
 
-<section id="unsupervised-learning-blog-singular-value-decomposition" class="level1">
-<h1>Unsupervised Learning Blog: Singular Value Decomposition</h1>
+<section id="unsupervised-learning-blog" class="level1">
+<h1>Unsupervised Learning Blog</h1>
+</section>
+<section id="part-one-singular-value-decomposition" class="level1">
+<h1>Part One: Singular Value Decomposition</h1>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>In this blog, I look at singular value decomposition as it pertains to images. Singular value decomposition is a matrix factorization that can be used to compress images, decreasing the storage needed to store an image.</p>
@@ -225,7 +228,7 @@ background-size: cover;
 <p>In the case that D is a real, diagonal matrix and real matrices U and V are orthogonal matrices. One can use this singular value decomposition to compress images down to much smaller images by selecting a component we can call ‘k’; by only selecting the first k columns of U, the top k singular values in D, and the first k rows of V, one can approximate the original matrix A by matrix multiplying these three new matrices.</p>
 <p>With smaller values of k, understandably, the reconstructed matrix will be further from the original matrix. With higher values of k, the reconstructed matrix will be more similar to the original matrix.</p>
 <p>Because images themselves are matrices, one can apply singular value decomposition to images. The code below demonstrates the process.</p>
-<div class="cell" data-execution_count="25">
+<div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -234,7 +237,7 @@ background-size: cover;
 <section id="part-1-image-compression-with-singular-value-decompression" class="level2">
 <h2 class="anchored" data-anchor-id="part-1-image-compression-with-singular-value-decompression">Part 1: Image Compression with Singular Value Decompression</h2>
 <p>Below I created a function called svd_reconstruct that uses singular value decomposition to compress an image as explained above. There is some set-up code prior to that function; a function called compare_images that allows a user to compare the original and reconstructed images, a read_image function that reads in an image from the Internet, and a to_greyscale image (with examples) to convert an image to greyscale.</p>
-<div class="cell" data-execution_count="26">
+<div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compare_images(A, A_):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    fig, axarr <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize <span class="op">=</span> (<span class="dv">7</span>,<span class="dv">3</span>))</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -247,19 +250,19 @@ background-size: cover;
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    axarr[<span class="dv">1</span>].<span class="bu">set</span>(title <span class="op">=</span> <span class="st">"reconstructed image"</span>)</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="27">
+<div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> PIL</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_image(url):</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(PIL.Image.<span class="bu">open</span>(urllib.request.urlopen(url)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="28">
+<div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://cdn-prd.content.metamorphosis.com/wp-content/uploads/sites/2/2020/10/shutterstock_1073056451-2.jpg"</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> read_image(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="29">
+<div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, axarr <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize <span class="op">=</span> (<span class="dv">7</span>, <span class="dv">3</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_greyscale(im):</span>
@@ -274,7 +277,7 @@ background-size: cover;
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>axarr[<span class="dv">1</span>].imshow(grey_img, cmap <span class="op">=</span> <span class="st">"Greys"</span>)</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>axarr[<span class="dv">1</span>].axis(<span class="st">"off"</span>)</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>axarr[<span class="dv">1</span>].<span class="bu">set</span>(title <span class="op">=</span> <span class="st">"greyscale"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>[Text(0.5, 1.0, 'greyscale')]</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -282,7 +285,7 @@ background-size: cover;
 </div>
 </div>
 <p>After that set up, below is the actual implementation of the svd_reconstruct function alongside a brief test of an original image and reconstructed image of four components.</p>
-<div class="cell" data-execution_count="30">
+<div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> svd_reconstruct(img, k):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A = U D V(transpose)</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -296,7 +299,7 @@ background-size: cover;
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> U_ <span class="op">@</span> D_ <span class="op">@</span> V_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="31">
+<div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>grey_img_2 <span class="op">=</span> svd_reconstruct(grey_img, <span class="dv">4</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>compare_images(grey_img, grey_img_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -308,7 +311,7 @@ background-size: cover;
 <h2 class="anchored" data-anchor-id="experimentation">Experimentation</h2>
 <p>The purpose of singular value decomposition in compressing images is to decrease storage space an image takes up. The function below, svd_experiment, runs through component values of 5, 15, 25, 35, 45, and 55 and explores what percentage of the original storage each image takes up. I increased the value of k until the naked eye (or at least my naked eye) could not perceive a difference between the original image and the reconstructed image. I confirmed that by using the compare_images function.</p>
 <p>At 55 components, the reconstructed image only took up 13.8% of the original image’s storage space. This is a significant difference in storage for a minute, invisible-to-the-human-eye change in image structure.</p>
-<div class="cell" data-execution_count="32">
+<div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> svd_experiment(img):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> plt.figure(figsize <span class="op">=</span> (<span class="dv">8</span>, <span class="dv">8</span>))</span>
@@ -340,7 +343,7 @@ background-size: cover;
 <p><img src="unsupervised_learning_blog_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="33">
+<div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>compare_images(grey_img, svd_reconstruct(grey_img, <span class="dv">55</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="unsupervised_learning_blog_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
@@ -351,7 +354,7 @@ background-size: cover;
 <h2 class="anchored" data-anchor-id="extras-modifying-svd_reconstruct-with-compression-factors">Extras: Modifying svd_reconstruct with Compression Factors</h2>
 <p>After finishing the svd_reconstruct, it is important to note that rarely do people understand image compression by the value of k. They are more likely to use a compression factor, how much they want the image storage to decrease by. Below I implemented a version of svd_reconstruct in which the user imputs the compression factor (i.e.&nbsp;5 means the image is compressed to 1/5 the original storage space).</p>
 <p>This required some extra math within the reconstruct function to determine the value of k for a given compression factor. That code can be seen below.</p>
-<div class="cell" data-execution_count="34">
+<div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> svd_reconstruct_extra(img, comp_factor):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#get the new size of the compressed image</span></span>
@@ -371,14 +374,14 @@ background-size: cover;
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> U_ <span class="op">@</span> D_ <span class="op">@</span> V_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Below I tested two different compression factors; one very large (80), and one fairly small (10). It is clear that with a higher compression factor – the image taking up significantly less space than the original – the reconstructed image is far different than the original. With a smaller compression factor, 10, the reconstructed image is nearly the same as the original image.</p>
-<div class="cell" data-execution_count="35">
+<div class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>grey_img_2 <span class="op">=</span> svd_reconstruct_extra(grey_img, <span class="dv">80</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>compare_images(grey_img, grey_img_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="unsupervised_learning_blog_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="36">
+<div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>grey_img_2 <span class="op">=</span> svd_reconstruct_extra(grey_img, <span class="dv">10</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>compare_images(grey_img, grey_img_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -389,7 +392,21 @@ background-size: cover;
 </section>
 <section id="part-two-spectral-community-detection" class="level1">
 <h1>Part Two: Spectral Community Detection</h1>
-<div class="cell" data-execution_count="37">
+<section id="laplacian-spectral-clustering" class="level2">
+<h2 class="anchored" data-anchor-id="laplacian-spectral-clustering">Laplacian Spectral Clustering</h2>
+<p>Laplacian Spectral Clustering, which is demonstrated below, is a clustering algorithm that works whether data is linearly separable or not. This makes it helpful in separating data that is not linearly separable, potentially like graphs or circular divisions.</p>
+<p>Laplacian clustering works in the following manner. First, we get the adjacency matrix of the graph. The adjacency matrix demonstrates the edges between nodes. Let’s call this adjacency matrix <strong>A</strong>. In order to determine relationships between nodes, we can consider the edges between different clusters; we want few edges that connect nodes from different clusters. Let’s call these edges connecting between edges cuts. We want to minimize the cuts between clusters.</p>
+<p>We are trying to find a vector z such that the number of cuts are minimized. Finding a binary vector <span class="math inline">\(z \in {0,1}\)</span> is an NP-hard problem, but we can approximate the binary vector z by doing the following.</p>
+<p>A normalized Laplacian matrix can be defined as the matrix <span class="math display">\[ L = D^{-1}[D - A] \]</span></p>
+<p>The diagonal matrix D is the diagonal matrix where</p>
+<p><span class="math display">\[  D = \begin{bmatrix}{\sum_{i = 1}^{n} a_{i1}} &amp;&amp; \\ &amp; \ddots &amp; \
+\ &amp;&amp; \sum_{i = 1}^{n} a_{in} \end{bmatrix} \]</span></p>
+<p>When we have the normalized Laplacian <strong>L</strong>, z should be the eigenvector with the second-smallest eigenvalue of the normalized Laplacian. With this binary vector, we can split the non-linear data into clusters.</p>
+<p>I will demonstrate this below, but begin with a little insight into the graph used in this process.</p>
+<section id="the-graph" class="level3">
+<h3 class="anchored" data-anchor-id="the-graph">The Graph</h3>
+<p>Below is the graph nicknamed the “Karate Club Graph”, a graph in which each node is an individual member of a karate club. The edges are measures of social ties.</p>
+<div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.karate_club_graph()</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>layout <span class="op">=</span> nx.layout.fruchterman_reingold_layout(G)</span>
@@ -398,10 +415,11 @@ background-size: cover;
 <p><img src="unsupervised_learning_blog_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="38">
+<p>The karate club ended up splitting between two officers, who we will call Mr.&nbsp;Hi and Officer. Knowing which club each member has gone to, we can create the graph below. It colors each node orange if that member belongs to the Officer club and blue if they belong to the Mr.&nbsp;Hi club.</p>
+<div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>clubs <span class="op">=</span> nx.get_node_attributes(G, <span class="st">"club"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="39">
+<div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>nx.draw(G, layout,</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>        with_labels<span class="op">=</span><span class="va">True</span>, </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        node_color <span class="op">=</span> [<span class="st">"orange"</span> <span class="cf">if</span> clubs[i] <span class="op">==</span> <span class="st">"Officer"</span> <span class="cf">else</span> <span class="st">"steelblue"</span> <span class="cf">for</span> i <span class="kw">in</span> G.nodes()],</span>
@@ -411,15 +429,62 @@ background-size: cover;
 <p><img src="unsupervised_learning_blog_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> nx.adjacency_matrix(G).toarray()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="laplacian-spectral-clustering-on-the-karate-club-graph" class="level3">
+<h3 class="anchored" data-anchor-id="laplacian-spectral-clustering-on-the-karate-club-graph">Laplacian Spectral Clustering on the Karate Club Graph</h3>
+<p>Below is the process for applying the Laplacian clustering method described above on the karate club graph. The implemented function ‘spectral_clustering’ returns a binary vector, z, that determines which cluster each node belongs to.</p>
+<div class="cell" data-execution_count="147">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> NearestNeighbors</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spectral_clustering(G):</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> nx.adjacency_matrix(G).toarray()</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">#find D, start by getting the sums of each row of A</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    row_sums <span class="op">=</span> np.<span class="bu">sum</span>(A, axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">#put sums into diagonal matrix D</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> np.diag(row_sums)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">#find normalized Laplacian </span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> np.linalg.inv(D)<span class="op">@</span>(D <span class="op">-</span> A)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># find z, eigenvector with second smallest eigenvalue of Laplacian</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    eig_vals, eig_vecs <span class="op">=</span> np.linalg.eig(L)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">#sort eigenvalues, get the second smallest eigenvalue</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    vals_sorted <span class="op">=</span> np.sort(eig_vals)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    z_val <span class="op">=</span> vals_sorted[<span class="dv">1</span>]</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">#get index of second smallest eigenvalue and get corresponding eigenvector: this is z</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    ind <span class="op">=</span> eig_vals.tolist().index(z_val)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> eig_vecs[:,ind]</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">#make z binary</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> np.where(z <span class="op">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spectral_clustering(G):</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="the-accuracy-of-laplacian-clustering" class="level3">
+<h3 class="anchored" data-anchor-id="the-accuracy-of-laplacian-clustering">The Accuracy of Laplacian Clustering</h3>
+<p>The Laplacian clustering did a remarkably good job of separating the nodes into their two clusters or clubs. There was one mistake, node number 8, who went with club Mr.&nbsp;Hi but which my Laplacian clustering algorithm placed with the Officer club. Every other node was placed in the correct cluster. It is clear that Laplacian clustering worked very well in this case.</p>
+<div class="cell" data-execution_count="149">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> spectral_clustering(G)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>nx.draw(G, layout,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>        with_labels<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        node_color <span class="op">=</span> [<span class="st">"orange"</span> <span class="cf">if</span> z[i] <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">"steelblue"</span> <span class="cf">for</span> i <span class="kw">in</span> G.nodes()],</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        edgecolors <span class="op">=</span> <span class="st">"black"</span> <span class="co"># confusingly, this is the color of node borders, not of edges</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>        ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="unsupervised_learning_blog_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
+</div>
 </div>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
